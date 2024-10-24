@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "ListaLigada.h"
+#include "ListaDuplamenteLigada.h"
 
 // Constantes
 enum {
@@ -8,6 +8,7 @@ enum {
     OP_ADICIONAR,
     OP_EXCLUIR,
     OP_LISTAR,
+    OP_LISTAR_DEC,
     OP_SAIR
 };
 
@@ -16,6 +17,7 @@ enum {
 // Protótipos
 int menu();
 void imprimir();
+void imprimirDec();
 
 int main(void)
 {
@@ -41,6 +43,9 @@ int main(void)
             case OP_LISTAR:
                 imprimir();
                 break;
+            case OP_LISTAR_DEC:
+                imprimirDec();
+            break;
             case OP_SAIR:
                 break;
             default:
@@ -61,6 +66,7 @@ int menu() {
     printf("%d - Adicionar\n", OP_ADICIONAR);
     printf("%d - Excluir\n", OP_EXCLUIR);
     printf("%d - Imprimir\n", OP_LISTAR);
+    printf("%d - Imprimir Decrescente\n", OP_LISTAR_DEC);
     printf("%d - Sair\n", OP_SAIR);
     printf("Digite sua opcao: ");
     scanf("%d", &op);
@@ -75,6 +81,18 @@ void imprimir() {
         while(corrente(&valor)) {
             printf("%d ",valor);
             paraProximo();
+        }
+        printf("\n");
+    }
+}
+
+void imprimirDec() {
+    int valor = 0;
+    if(inicio != NULL) {
+        paraFinal();
+        while(corrente(&valor)) {
+            printf("%d ",valor);
+            paraAnterior();
         }
         printf("\n");
     }
